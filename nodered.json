@@ -1,0 +1,877 @@
+[
+    {
+        "id": "534a5008.40d5c",
+        "type": "tab",
+        "label": "Sala 202",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cfe8f186.38785",
+        "type": "arduino out",
+        "z": "534a5008.40d5c",
+        "name": "LED",
+        "pin": "13",
+        "state": "OUTPUT",
+        "arduino": "d3cc4b10.99a638",
+        "x": 319.50000381469727,
+        "y": 327.00000190734863,
+        "wires": []
+    },
+    {
+        "id": "3878ec8f.b89684",
+        "type": "inject",
+        "z": "534a5008.40d5c",
+        "name": "LIGAR",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130.10000228881836,
+        "y": 177.00000095367432,
+        "wires": [
+            [
+                "88e16422.201798"
+            ]
+        ]
+    },
+    {
+        "id": "ebce38c9.ee50c8",
+        "type": "inject",
+        "z": "534a5008.40d5c",
+        "name": "DESLIGAR",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 113.10000228881836,
+        "y": 243.99999904632568,
+        "wires": [
+            [
+                "88e16422.201798"
+            ]
+        ]
+    },
+    {
+        "id": "88e16422.201798",
+        "type": "mqtt out",
+        "z": "534a5008.40d5c",
+        "name": "INTERRUPTOR",
+        "topic": "led41",
+        "qos": "",
+        "retain": "",
+        "broker": "561379cd.d1ca48",
+        "x": 345.5,
+        "y": 97.00000190734863,
+        "wires": []
+    },
+    {
+        "id": "f0a4e68d.2918b8",
+        "type": "mqtt in",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "topic": "led41",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "561379cd.d1ca48",
+        "x": 122.5,
+        "y": 327,
+        "wires": [
+            [
+                "cfe8f186.38785",
+                "e8e31b3a.820a58"
+            ]
+        ]
+    },
+    {
+        "id": "4fdd02e7.57690c",
+        "type": "arduino in",
+        "z": "534a5008.40d5c",
+        "name": "Temp",
+        "pin": "0",
+        "state": "ANALOG",
+        "arduino": "d3cc4b10.99a638",
+        "x": 85.50000190734863,
+        "y": 430.0000057220459,
+        "wires": [
+            [
+                "b6b6df6a.b705e"
+            ]
+        ]
+    },
+    {
+        "id": "df597e35.20a26",
+        "type": "function",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "func": "msg.payload = (msg.payload * 0.48828125).toFixed(2);\ncontext.global.temperatura = msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 391.50000381469727,
+        "y": 428.00000381469727,
+        "wires": [
+            [
+                "d6de74b4.890de8",
+                "3d57544a.a4931c",
+                "dd04f38a.46b46"
+            ]
+        ]
+    },
+    {
+        "id": "d6de74b4.890de8",
+        "type": "debug",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 524.5000038146973,
+        "y": 357.00000381469727,
+        "wires": []
+    },
+    {
+        "id": "b6b6df6a.b705e",
+        "type": "delay",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 243.5,
+        "y": 430.66666984558105,
+        "wires": [
+            [
+                "df597e35.20a26"
+            ]
+        ]
+    },
+    {
+        "id": "f2128904.2084e8",
+        "type": "ui_button",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "group": "9e0a6839.ff97d8",
+        "order": 3,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "Ligar",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#2E8B57",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "",
+        "x": 139.1666488647461,
+        "y": 124.88889026641846,
+        "wires": [
+            [
+                "88e16422.201798"
+            ]
+        ]
+    },
+    {
+        "id": "b8391498.9845a8",
+        "type": "ui_button",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "group": "9e0a6839.ff97d8",
+        "order": 2,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "Desligar",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "",
+        "x": 137.1666717529297,
+        "y": 82.88888931274414,
+        "wires": [
+            [
+                "88e16422.201798"
+            ]
+        ]
+    },
+    {
+        "id": "3d57544a.a4931c",
+        "type": "ui_gauge",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "group": "949bb343.6e718",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "celsius",
+        "format": "{{value}}",
+        "min": "-10",
+        "max": "40",
+        "colors": [
+            "#055aaf",
+            "#26bf64",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 544.1666984558105,
+        "y": 493.8888912200928,
+        "wires": []
+    },
+    {
+        "id": "dd04f38a.46b46",
+        "type": "switch",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "20",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "20",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 541.5,
+        "y": 424,
+        "wires": [
+            [
+                "35be07b6.d04be8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "217ddedc.833982",
+        "type": "ui_toast",
+        "z": "534a5008.40d5c",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 762,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "35be07b6.d04be8",
+        "type": "function",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "func": "msg.payload = \"Ta pegando fogo bicho\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 679.5,
+        "y": 432,
+        "wires": [
+            [
+                "217ddedc.833982"
+            ]
+        ]
+    },
+    {
+        "id": "496248.3982bdb8",
+        "type": "ui_audio",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "group": "949bb343.6e718",
+        "voice": "pt-BR",
+        "always": "",
+        "x": 765,
+        "y": 313,
+        "wires": []
+    },
+    {
+        "id": "4ec948d1.d0c878",
+        "type": "http in",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "url": "temperatura",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 168.8461685180664,
+        "y": 549.7948970794678,
+        "wires": [
+            [
+                "c647e2be.e511e"
+            ]
+        ]
+    },
+    {
+        "id": "1248215d.1b6daf",
+        "type": "http response",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 510.3846626281738,
+        "y": 549.9487915039062,
+        "wires": []
+    },
+    {
+        "id": "c647e2be.e511e",
+        "type": "function",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "func": "dados = {\n    temperatura : context.global.temperatura\n}\n\nmsg.payload = JSON.stringify(dados);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 316.5384826660156,
+        "y": 549.3333721160889,
+        "wires": [
+            [
+                "1248215d.1b6daf"
+            ]
+        ]
+    },
+    {
+        "id": "657a73e1.ffd53c",
+        "type": "mongodb in",
+        "z": "534a5008.40d5c",
+        "mongodb": "181403a6.25dd4c",
+        "name": "PESQUISAR",
+        "collection": "temperatura",
+        "operation": "find",
+        "x": 318.0769577026367,
+        "y": 627.436071395874,
+        "wires": [
+            [
+                "1b049b8.b065a65"
+            ]
+        ]
+    },
+    {
+        "id": "a214e554.028f88",
+        "type": "mongodb out",
+        "z": "534a5008.40d5c",
+        "mongodb": "13820f51.157901",
+        "name": "SALVAR",
+        "collection": "temperatura",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 636.5385871300332,
+        "y": 1096.6667479001562,
+        "wires": []
+    },
+    {
+        "id": "2a49f501.0a648a",
+        "type": "inject",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110.38460364708531,
+        "y": 625.8974456787108,
+        "wires": [
+            [
+                "657a73e1.ffd53c"
+            ]
+        ]
+    },
+    {
+        "id": "72d2abc4.6417c4",
+        "type": "inject",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 258.07693716195917,
+        "y": 1091.2820349106423,
+        "wires": [
+            [
+                "174a8f52.606a51"
+            ]
+        ]
+    },
+    {
+        "id": "174a8f52.606a51",
+        "type": "function",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "func": "return {\n    \"sensor\" : \"sensor-41\",\n    \"valor\" : 22,\n    \"data\" : Date.now()\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 447.3076829176683,
+        "y": 1094.666669075306,
+        "wires": [
+            [
+                "a214e554.028f88"
+            ]
+        ]
+    },
+    {
+        "id": "1b049b8.b065a65",
+        "type": "debug",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 555.7692794799805,
+        "y": 625.2821283340454,
+        "wires": []
+    },
+    {
+        "id": "589b1956.3155d8",
+        "type": "inject",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 111.76924133300781,
+        "y": 699.3334636688232,
+        "wires": [
+            [
+                "be0fb429.2113f8"
+            ]
+        ]
+    },
+    {
+        "id": "f2fb69a9.6ff598",
+        "type": "debug",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 708.8462066650391,
+        "y": 695.6411018371582,
+        "wires": []
+    },
+    {
+        "id": "be0fb429.2113f8",
+        "type": "mongodb in",
+        "z": "534a5008.40d5c",
+        "mongodb": "13820f51.157901",
+        "name": "",
+        "collection": "temperatura",
+        "operation": "find",
+        "x": 414.99993896484375,
+        "y": 703.7949161529541,
+        "wires": [
+            [
+                "f2fb69a9.6ff598",
+                "4f787b44.3daa44"
+            ]
+        ]
+    },
+    {
+        "id": "79f5ca8.feff934",
+        "type": "http in",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "url": "temperaturas",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 244.24039459228516,
+        "y": 911.5239505767822,
+        "wires": [
+            [
+                "478bad94.ad3a34",
+                "1e78aec4.0a0721"
+            ]
+        ]
+    },
+    {
+        "id": "478bad94.ad3a34",
+        "type": "http response",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 570.3942307692307,
+        "y": 927.0287704467775,
+        "wires": []
+    },
+    {
+        "id": "1e78aec4.0a0721",
+        "type": "function",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "func": "return {\n    \"sensor\" : msg.payload.sensor,\n    \"valor\" : msg.payload.valor,\n    \"data\" : Date.now()\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 429.625,
+        "y": 992.596068749061,
+        "wires": [
+            [
+                "2174fd63.40ad62",
+                "a214e554.028f88"
+            ]
+        ]
+    },
+    {
+        "id": "2174fd63.40ad62",
+        "type": "debug",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 579.625,
+        "y": 1008.5912704467773,
+        "wires": []
+    },
+    {
+        "id": "21a678d5.7a7768",
+        "type": "http in",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "url": "temperaturas",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 141.9230769230769,
+        "y": 789.6923123873196,
+        "wires": [
+            [
+                "be0fb429.2113f8"
+            ]
+        ]
+    },
+    {
+        "id": "4f787b44.3daa44",
+        "type": "http response",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 707.3076923076922,
+        "y": 770.6153987004205,
+        "wires": []
+    },
+    {
+        "id": "4e620dfd.9cf654",
+        "type": "http in",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "url": "temp/:test",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 134.99999999999997,
+        "y": 1173.3846811147835,
+        "wires": [
+            [
+                "4447ac49.085894",
+                "80da17.5abc85e8"
+            ]
+        ]
+    },
+    {
+        "id": "4447ac49.085894",
+        "type": "function",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "func": "msg.payload = {\"sensor\": \"13\"}\n//msg.limit = 2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320.3846153846153,
+        "y": 1187.5384521484373,
+        "wires": [
+            [
+                "1be95abd.af2aa5"
+            ]
+        ]
+    },
+    {
+        "id": "70afc0f5.a418c",
+        "type": "http response",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 547.3076923076922,
+        "y": 1218.153874323918,
+        "wires": []
+    },
+    {
+        "id": "1be95abd.af2aa5",
+        "type": "mongodb in",
+        "z": "534a5008.40d5c",
+        "mongodb": "13820f51.157901",
+        "name": "",
+        "collection": "temperatura",
+        "operation": "find",
+        "x": 386.9375305175781,
+        "y": 1280.4808721542358,
+        "wires": [
+            [
+                "70afc0f5.a418c"
+            ]
+        ]
+    },
+    {
+        "id": "1a7c820c.df0cde",
+        "type": "mongodb out",
+        "z": "534a5008.40d5c",
+        "mongodb": "13820f51.157901",
+        "name": "apagar",
+        "collection": "temperatura",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 516.1538696289062,
+        "y": 1397.6923828125,
+        "wires": []
+    },
+    {
+        "id": "5efafa54.518334",
+        "type": "http in",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "url": "temperatura",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 185.0096247746394,
+        "y": 1374.5960705096902,
+        "wires": [
+            [
+                "c2dac570.8fc878"
+            ]
+        ]
+    },
+    {
+        "id": "7abb993d.d97c48",
+        "type": "http response",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 502.7019089918869,
+        "y": 1462.4181952843296,
+        "wires": []
+    },
+    {
+        "id": "c2dac570.8fc878",
+        "type": "function",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "func": "msg.payload = {\"sensor\": \"SALA202\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 344.24036407470703,
+        "y": 1404.1345882415771,
+        "wires": [
+            [
+                "1a7c820c.df0cde",
+                "7abb993d.d97c48"
+            ]
+        ]
+    },
+    {
+        "id": "42340ad8.c14d04",
+        "type": "debug",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 551.1634474534254,
+        "y": 1173.6681718092696,
+        "wires": []
+    },
+    {
+        "id": "80da17.5abc85e8",
+        "type": "function",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "func": "//msg.payload = msg.req.params.test;\nmsg.payload = msg.req.query.bla;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320.39421668419465,
+        "y": 1131.5095226581277,
+        "wires": [
+            [
+                "42340ad8.c14d04"
+            ]
+        ]
+    },
+    {
+        "id": "e8e31b3a.820a58",
+        "type": "firebase modify",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "firebaseconfig": "",
+        "childpath": "lampada",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 454.2307891845703,
+        "y": 274.0000343322754,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3efa008f.593b7",
+        "type": "firebase.on",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "firebaseconfig": "",
+        "childpath": "lampada",
+        "atStart": true,
+        "eventType": "value",
+        "queries": [],
+        "x": 276.5384732759916,
+        "y": 30.153843806340138,
+        "wires": [
+            [
+                "cfe8f186.38785",
+                "2fd63a21.62b346"
+            ]
+        ]
+    },
+    {
+        "id": "2fd63a21.62b346",
+        "type": "debug",
+        "z": "534a5008.40d5c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 491.9423141479492,
+        "y": 224.8990077972412,
+        "wires": []
+    },
+    {
+        "id": "d3cc4b10.99a638",
+        "type": "arduino-board",
+        "z": "",
+        "device": "COM4"
+    },
+    {
+        "id": "561379cd.d1ca48",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "9e0a6839.ff97d8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Controle de Iluminação",
+        "tab": "413bef1b.b5731",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "949bb343.6e718",
+        "type": "ui_group",
+        "z": "",
+        "name": "Controle de Temperatura",
+        "tab": "413bef1b.b5731",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "181403a6.25dd4c",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "ds241308.mlab.com",
+        "port": "41308",
+        "db": "iotscj",
+        "name": ""
+    },
+    {
+        "id": "13820f51.157901",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "ds145752.mlab.com",
+        "port": "45752",
+        "db": "apiiotteste",
+        "name": ""
+    },
+    {
+        "id": "413bef1b.b5731",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Fiap - SALA 202",
+        "icon": "fa-lightbulb-o",
+        "disabled": false,
+        "hidden": false
+    }
+]
